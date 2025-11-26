@@ -118,6 +118,29 @@ Below is the current list of TTL values configured for the API cache. The latest
 * Players career : 1 hour
 * Players search : 10 min
 
+### GraphQL endpoint
+
+Need a flexible alternative to the REST routes? You can now query the API through the `/graphql` endpoint, powered by [Strawberry](https://strawberry.rocks/) and the same FastAPI controllers. The current schema focuses on the heroes scope and exposes a single `heroes` field that accepts role or key filters. Each hero node surfaces the list metadata plus a `details` field to fetch the full payload on demand.
+
+Example query :
+
+```graphql
+query HeroesExample {
+  heroes(keys: [ANA]) {
+    key
+    name
+    details {
+      description
+      abilities {
+        name
+      }
+    }
+  }
+}
+```
+
+Queries, mutations and introspection still benefit from the existing caching layers: nginx stores responses per GraphQL query and the application refreshes Blizzard data through the same controllers.
+
 ## 🐍 Architecture
 
 ### Default case

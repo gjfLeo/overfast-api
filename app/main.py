@@ -16,6 +16,7 @@ from .config import settings
 from .docs import render_documentation
 from .enums import Profiler, RouteTag
 from .gamemodes import router as gamemodes
+from .graphql import graphql_router
 from .helpers import overfast_internal_error
 from .heroes import router as heroes
 from .maps import router as maps
@@ -240,6 +241,7 @@ app.include_router(roles.router, prefix="/roles")
 app.include_router(gamemodes.router, prefix="/gamemodes")
 app.include_router(maps.router, prefix="/maps")
 app.include_router(players.router, prefix="/players")
+app.include_router(graphql_router, prefix="/graphql")
 
 logger.info("OverFast API... Online !")
 logger.info("Version : {}", settings.app_version)

@@ -16,6 +16,7 @@ dependencies = [
     "pydantic==2.12.*",
     "pydantic-settings==2.12.*",
     "selectolax==0.4.*",
+    "strawberry-graphql[fastapi]==0.243.*",
 ]
 
 [project.urls]
